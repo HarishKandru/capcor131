@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flower-app-deployment
+spec:  #it defines the desired state of the deployment
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:  #it defines the pod template used by the deployment
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: flower-container
+        image: harishkandru/transaction-history:3.0
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "300m"
+          requests: 
+            memory: "64Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 3015
